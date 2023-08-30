@@ -15,6 +15,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Check, Copy, RefreshCw } from 'lucide-react';
 import { useOrigin } from '@/hooks/use-origin';
+import { cn } from '@/lib/utils';
 
 export const InviteModal = () => {
   const { onOpen, isOpen, onClose, type, data } = useModal();
@@ -23,7 +24,7 @@ export const InviteModal = () => {
   const isModalOpen = isOpen && type === 'invite';
   const { server } = data;
 
-  const inviteUrl = `${origin}/invite.${server?.inviteCode}`;
+  const inviteUrl = `${origin}/invite/${server?.inviteCode}`;
 
   const [copied, setCopied] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -84,7 +85,9 @@ export const InviteModal = () => {
             className='text-xs text-zinc-500 mt-4'
           >
             Generate a new link
-            <RefreshCw className='w-4 h-4 ml-2' />
+            <RefreshCw
+              className={cn('w-4 h-4 ml-2', isLoading && 'animate-spin')}
+            />
           </Button>
         </div>
       </DialogContent>
