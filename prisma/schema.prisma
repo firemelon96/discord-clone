@@ -49,7 +49,7 @@ enum MemberRole {
 }
 
 model Member {
-  is   String     @id @default(uuid())
+  id   String     @id @default(uuid())
   role MemberRole @default(GUEST)
 
   profileId String
